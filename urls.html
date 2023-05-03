@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>URLs</title>
+  </head>
+  <body>
+    <h1>URLs</h1>
+    <ul id="urls"></ul>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(() => {
+        $.get('/api/urls', (data) => {
+          const urls = data.map((item) => `<li>${item.url}: <span style="color: ${item.status === 'up' ? 'green' : 'red'};">${item.status}</span></li>`);
+          $('#urls').html(urls.join(''));
+        });
+      });
+    </script>
+  </body>
+</html>
